@@ -1,27 +1,26 @@
 package main
 
 import (
-	"flag"
 	"fmt"
 	"math"
 )
 
 func berekenSnelheid(afstandKm float64, tijdUren float64) float64 {
-	/*
-	   Berekent de snelheid in km/u.
-	*/
-	omtrekKm := 2 * math.Pi * afstandKm // Omtrek van de cirkelbaan
+	omtrekKm := 2 * math.Pi * afstandKm
 	snelheidKmU := omtrekKm / tijdUren
 	return snelheidKmU
 }
 
 func main() {
-	afstandPtr := flag.Float64("afstand", 150.0, "Afstand tot de ster in miljoenen kilometers")
-	tijdPtr := flag.Float64("tijd", 8766.0, "Tijd voor een volledige omwenteling in uren")
-	flag.Parse()
+	var afstand, tijd float64
 
-	afstand := *afstandPtr * 1000000 // Zet miljoenen km om naar km
-	tijd := *tijdPtr
+	fmt.Print("Voer de afstand tot de ster in miljoenen kilometers in: ")
+	fmt.Scanln(&afstand)
+
+	fmt.Print("Voer de tijd voor een volledige omwenteling in uren in: ")
+	fmt.Scanln(&tijd)
+
+	afstand *= 1000000
 
 	snelheid := berekenSnelheid(afstand, tijd)
 	fmt.Printf("De planeet beweegt zich met %.2f km/u door de ruimte.\n", snelheid)
